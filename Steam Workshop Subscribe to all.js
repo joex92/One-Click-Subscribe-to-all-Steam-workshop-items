@@ -22,7 +22,7 @@
             const items = document.querySelectorAll(".general_btn.subscribe:not(.toggled)");
             items.forEach((i,n)=>{
                 i.onclick();
-                console.log(`Subscribed to item${n} id: ${i.id.match(/(\d+)/)[0]}`);
+                console.log(`${n.toString().padStart(2,0)}) Subscribed to item id: ${i.id.match(/(\d+)/)[0]}`);
             });
         };
         document.querySelector(".rightSectionHolder>.rightDetailsBlock").insertAdjacentElement("afterbegin",btn);
