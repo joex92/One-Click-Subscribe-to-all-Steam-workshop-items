@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         One-Click Subscribe to all steam workshop items
 // @namespace    https://github.com/joex92/One-Click-Subscribe-to-all-Steam-workshop-items
-// @version      2.2
+// @version      2.3
 // @description  Subscribe to all items shown.
 // @author       JoeX92
 // @match        https://steamcommunity.com/workshop/browse/?appid=*
@@ -41,7 +41,9 @@
                 btn.style.pointerEvents = '';
             }
         };
-        document.querySelector(".rightSectionHolder>.rightDetailsBlock").insertAdjacentElement("afterbegin",btn);
+        const rsection = document.querySelector(".rightSectionHolder>.rightDetailsBlock")
+        if ( rsection ) rsection.insertAdjacentElement("afterbegin",btn);
+        else document.querySelector('.right_column>.panel').insertAdjacentElement("afterbegin",btn);
     };
 
     // Your code here...
