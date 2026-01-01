@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         One-Click Subscribe to all steam workshop items
 // @namespace    https://github.com/joex92/One-Click-Subscribe-to-all-Steam-workshop-items
-// @version      1.1
+// @version      1.2
 // @description  Subscribe to all items shown.
 // @author       JoeX92
 // @match        https://steamcommunity.com/workshop/browse/?appid=*
@@ -17,6 +17,7 @@
         btn.setAttribute("data-panel","{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}");
         btn.setAttribute("role","button");
         btn.className = "general_btn createCollection";
+        btn.textContent = "Subscribe to all"
         btn.onclick = (e)=>{
             const items = document.querySelectorAll(".general_btn.subscribe:not(.toggled)");
             items.forEach((i,n)=>{
