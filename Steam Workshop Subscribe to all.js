@@ -23,7 +23,7 @@
             if ( unsubscribeditems.length ) {
                 btn.textContent = "Subscribing...";
                 btn.style.pointerEvents = 'none';
-                unsubscribeditems.forEach((i,n)=>{
+                unsubscribeditems.forEach( async (i,n)=>{
                     await i.onclick();
                     console.log(`${n.toString().padStart(2,0)}) Subscribed to item id: ${i.id.match(/(\d+)/)[0]}`);
                 });
@@ -33,7 +33,7 @@
                 const subscribeditems = document.querySelectorAll(".general_btn.subscribe.toggled");
                 btn.textContent = "Unsubscribing...";
                 btn.style.pointerEvents = 'none';
-                subscribeditems.forEach((i,n)=>{
+                subscribeditems.forEach( async (i,n)=>{
                     await i.onclick();
                     console.log(`${n.toString().padStart(2,0)}) Unsubscribed to item id: ${i.id.match(/(\d+)/)[0]}`);
                 });
