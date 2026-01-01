@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         One-Click Subscribe to all steam workshop items
 // @namespace    https://github.com/joex92/One-Click-Subscribe-to-all-Steam-workshop-items
-// @version      1.2
+// @version      2.0
 // @description  Subscribe to all items shown.
 // @author       JoeX92
 // @match        https://steamcommunity.com/workshop/browse/?appid=*
@@ -19,11 +19,21 @@
         btn.className = "general_btn createCollection";
         btn.textContent = "Subscribe to all"
         btn.onclick = (e)=>{
-            const items = document.querySelectorAll(".general_btn.subscribe:not(.toggled)");
-            items.forEach((i,n)=>{
-                i.onclick();
-                console.log(`${n.toString().padStart(2,0)}) Subscribed to item id: ${i.id.match(/(\d+)/)[0]}`);
-            });
+            const unsubscribeditems = document.querySelectorAll(".general_btn.subscribe:not(.toggled)");
+            if ( unsubscribeditems.length ) {
+                unsubscribeditems.forEach((i,n)=>{
+                    i.onclick();
+                    console.log(`${n.toString().padStart(2,0)}) Subscribed to item id: ${i.id.match(/(\d+)/)[0]}`);
+                });
+                btn.textContent = "Unsubscribe to all";
+            } else {
+                const subscribeditems = document.querySelectorAll(".general_btn.subscribe.toggled");
+                subscribeditems.forEach((i,n)=>{
+                    i.onclick();
+                    console.log(`${n.toString().padStart(2,0)}) Unsubscribed to item id: ${i.id.match(/(\d+)/)[0]}`);
+                });
+                btn.textContent = "Subscribe to all";
+            }
         };
         document.querySelector(".rightSectionHolder>.rightDetailsBlock").insertAdjacentElement("afterbegin",btn);
     };
