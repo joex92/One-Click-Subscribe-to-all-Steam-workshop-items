@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         One-Click Subscribe to all steam workshop items
 // @namespace    https://github.com/joex92/One-Click-Subscribe-to-all-Steam-workshop-items
-// @version      2.3
+// @version      2.4
 // @description  Subscribe to all items shown.
 // @author       JoeX92
-// @match        https://steamcommunity.com/workshop/browse/?appid=*
+// @match        https://steamcommunity.com/workshop/browse/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=steamcommunity.com
 // @grant        none
 // ==/UserScript==
@@ -17,7 +17,7 @@
         btn.setAttribute("data-panel","{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}");
         btn.setAttribute("role","button");
         btn.className = "general_btn createCollection";
-        btn.textContent = "Subscribe to all"
+        btn.textContent = ( document.querySelectorAll(".general_btn.subscribe:not(.toggled)").length ) ? "Subscribe to all" : "Unsubscribe to all";
         btn.onclick = async (e)=>{
             const unsubscribeditems = document.querySelectorAll(".general_btn.subscribe:not(.toggled)");
             if ( unsubscribeditems.length ) {
