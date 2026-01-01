@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         One-Click Subscribe to all steam workshop items
-// @namespace    http://tampermonkey.net/
-// @version      1.0
+// @namespace    https://github.com/joex92/One-Click-Subscribe-to-all-Steam-workshop-items
+// @version      1.1
 // @description  Subscribe to all items shown.
 // @author       JoeX92
 // @match        https://steamcommunity.com/workshop/browse/?appid=*
