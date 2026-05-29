@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         One-Click Subscribe to all steam workshop items
 // @namespace    https://github.com/joex92/One-Click-Subscribe-to-all-Steam-workshop-items
-// @version      4.3.1
+// @version      4.3.2
 // @description  Subscribe to all items shown.
 // @author       JoeX92
 // @match        https://steamcommunity.com/workshop/browse/*
@@ -20,7 +20,7 @@
     //     btn.textContent = ( document.querySelectorAll(".rQvmBxj2Kvg-:empty").length ) ? "Subscribe to all" : "Unsubscribe to all";
     //     btn.onclick = async (e)=>{
         const menuID = "sub2all";
-        menuText = ( document.querySelectorAll(".rQvmBxj2Kvg-:empty").length ) ? "Subscribe to all" : "Unsubscribe to all";
+        let menuText = ( document.querySelectorAll(".rQvmBxj2Kvg-:empty").length ) ? "Subscribe to all" : "Unsubscribe to all";
         const subFunc = async (e)=>{
             console.log(e);
             const unsubscribeditems = document.querySelectorAll(".rQvmBxj2Kvg-:empty");
