@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         One-Click Subscribe to all steam workshop items
 // @namespace    https://github.com/joex92/One-Click-Subscribe-to-all-Steam-workshop-items
-// @version      4.4.2
+// @version      4.4.3
 // @description  Subscribe to all items shown.
 // @author       JoeX92
 // @match        https://steamcommunity.com/workshop/browse/*
@@ -14,38 +14,36 @@
     'use strict';
     
     window.onload = ()=>{
+        const btn = document.createElement("button");
         const subID = "sub2all";
         let menuText = ( document.querySelectorAll(".rQvmBxj2Kvg-:empty").length ) ? "Subscribe to all" : "Unsubscribe to all";
         const subFunc = async (e)=>{
             console.log(e);
             const unsubscribeditems = document.querySelectorAll(".rQvmBxj2Kvg-:empty");
             if ( unsubscribeditems.length ) {
-                // btn.textContent = "Subscribing...";
-                // btn.style.pointerEvents = 'none';
+                btn.textContent = "Subscribing...";
+                btn.style.pointerEvents = 'none';
                 unsubscribeditems.forEach( async (i,n)=>{
                     await i.parentElement.querySelector("button").click();
                     console.log(`${n.toString().padStart(2,0)}) Subscribed to item id: ${i.id.match(/(\d+)/)[0]}`);
                 });
-                menuText = "Unsubscribe to all";
-                // btn.textContent = "Unsubscribe to all";
-                // btn.style.pointerEvents = '';
+                btn.textContent = menuText = "Unsubscribe to all";
+                btn.style.pointerEvents = '';
             } else {
                 const subscribeditems = document.querySelectorAll(".rQvmBxj2Kvg-:not(:empty)");
-                // btn.textContent = "Unsubscribing...";
-                // btn.style.pointerEvents = 'none';
+                btn.textContent = "Unsubscribing...";
+                btn.style.pointerEvents = 'none';
                 subscribeditems.forEach( async (i,n)=>{
                     await i.parentElement.querySelector("button").click();
                     console.log(`${n.toString().padStart(2,0)}) Unsubscribed to item id: ${i.id.match(/(\d+)/)[0]}`);
                 });
-                menuText = "Subscribe to all";
-                // btn.textContent = "Subscribe to all";
-                // btn.style.pointerEvents = '';
+                btn.textContent = menuText = "Subscribe to all";
+                btn.style.pointerEvents = '';
             }
             GM_registerMenuCommand(menuText, subFunc, { id: subID, autoClose: false });
         };
         const btnID = 'btn2pge'
         GM_registerMenuCommand("Add Button to Page", (e)=>{
-            const btn = document.createElement("button");
             btn.setAttribute("type","button");
             btn.setAttribute("data-accent-color","dull");
             btn.className = "Thio3V0imwc- _0DdgBbU2bPk- _2RWLTCLE-0s- krQEbDRNCFg-";
@@ -58,6 +56,7 @@
                 if ( lsection ) lsection.insertAdjacentElement("afterbegin",btndiv);
                 else document.querySelector('.VsQBaHlz-3M-').insertAdjacentElement("beforeend",btndiv);
                 GM_unregisterMenuCommand(btnID);
+                GM_unregisterMenuCommand(subID);
             }
         }, { id: btnID, autoClose: false });
         GM_registerMenuCommand(menuText, subFunc, { id: subID, autoClose: false });
