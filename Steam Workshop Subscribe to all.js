@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         One-Click Subscribe to all steam workshop items
 // @namespace    https://github.com/joex92/One-Click-Subscribe-to-all-Steam-workshop-items
-// @version      4.2
+// @version      4.3
 // @description  Subscribe to all items shown.
 // @author       JoeX92
 // @match        https://steamcommunity.com/workshop/browse/*
@@ -12,16 +12,16 @@
 (function() {
     'use strict';
     
-    // $(document).ready(()=>{
+    $(document).ready(()=>{
     //     const btn = document.createElement("button");
     //     btn.setAttribute("type","button");
     //     btn.setAttribute("data-accent-color","dull");
     //     btn.className = "Thio3V0imwc- _0DdgBbU2bPk- _2RWLTCLE-0s- krQEbDRNCFg-";
     //     btn.textContent = ( document.querySelectorAll(".rQvmBxj2Kvg-:empty").length ) ? "Subscribe to all" : "Unsubscribe to all";
     //     btn.onclick = async (e)=>{
-    const menuID = "sub2all";
-    menuText = ( document.querySelectorAll(".rQvmBxj2Kvg-:empty").length ) ? "Subscribe to all" : "Unsubscribe to all";
-    const subFunc = async (e)=>{
+        const menuID = "sub2all";
+        menuText = ( document.querySelectorAll(".rQvmBxj2Kvg-:empty").length ) ? "Subscribe to all" : "Unsubscribe to all";
+        const subFunc = async (e)=>{
             console.log(e);
             const unsubscribeditems = document.querySelectorAll(".rQvmBxj2Kvg-:empty");
             if ( unsubscribeditems.length ) {
@@ -47,9 +47,8 @@
                 // btn.style.pointerEvents = '';
             }
             GM_registerMenuCommand(menuText, subFunc, { id: menuID, autoClose: false });
-        }
-    GM_registerMenuCommand(menuText, subFunc, { id: menuID, autoClose: false });
-    //  };
+        };
+        GM_registerMenuCommand(menuText, subFunc, { id: menuID, autoClose: false });
     //     const btndiv = document.createElement("div");
     //     btndiv.appendChild(btn);
     //     const lsection = document.querySelector("._2u-CXYgdzlo-");
@@ -57,5 +56,5 @@
     //         if ( lsection ) lsection.querySelector("button.Thio3V0imwc-._0DdgBbU2bPk-._2RWLTCLE-0s-.krQEbDRNCFg-").insertAdjacentElement("afterend",btndiv);
     //         else document.querySelector('.VsQBaHlz-3M-').insertAdjacentElement("beforeend",btndiv);
     //     }
-    // });
+    });
 })();
