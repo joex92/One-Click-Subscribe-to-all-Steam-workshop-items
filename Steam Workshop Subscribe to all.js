@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         One-Click Subscribe to all steam workshop items
 // @namespace    https://github.com/joex92/One-Click-Subscribe-to-all-Steam-workshop-items
-// @version      4.3.2
+// @version      4.4
 // @description  Subscribe to all items shown.
 // @author       JoeX92
 // @match        https://steamcommunity.com/workshop/browse/*
@@ -13,13 +13,7 @@
     'use strict';
     
     window.onload = ()=>{
-    //     const btn = document.createElement("button");
-    //     btn.setAttribute("type","button");
-    //     btn.setAttribute("data-accent-color","dull");
-    //     btn.className = "Thio3V0imwc- _0DdgBbU2bPk- _2RWLTCLE-0s- krQEbDRNCFg-";
-    //     btn.textContent = ( document.querySelectorAll(".rQvmBxj2Kvg-:empty").length ) ? "Subscribe to all" : "Unsubscribe to all";
-    //     btn.onclick = async (e)=>{
-        const menuID = "sub2all";
+        const subID = "sub2all";
         let menuText = ( document.querySelectorAll(".rQvmBxj2Kvg-:empty").length ) ? "Subscribe to all" : "Unsubscribe to all";
         const subFunc = async (e)=>{
             console.log(e);
@@ -46,15 +40,25 @@
                 // btn.textContent = "Subscribe to all";
                 // btn.style.pointerEvents = '';
             }
-            GM_registerMenuCommand(menuText, subFunc, { id: menuID, autoClose: false });
+            GM_registerMenuCommand(menuText, subFunc, { id: subID, autoClose: false });
         };
-        GM_registerMenuCommand(menuText, subFunc, { id: menuID, autoClose: false });
-    //     const btndiv = document.createElement("div");
-    //     btndiv.appendChild(btn);
-    //     const lsection = document.querySelector("._2u-CXYgdzlo-");
-    //     if ( document.querySelectorAll(".BfmIgp5hDLQ- > div > div > button").length ) {
-    //         if ( lsection ) lsection.querySelector("button.Thio3V0imwc-._0DdgBbU2bPk-._2RWLTCLE-0s-.krQEbDRNCFg-").insertAdjacentElement("afterend",btndiv);
-    //         else document.querySelector('.VsQBaHlz-3M-').insertAdjacentElement("beforeend",btndiv);
-    //     }
+        const btnID = 'btn2pge'
+        GM_registerMenuCommand("Add Button to Page", (e)=>{
+            const btn = document.createElement("button");
+            btn.setAttribute("type","button");
+            btn.setAttribute("data-accent-color","dull");
+            btn.className = "Thio3V0imwc- _0DdgBbU2bPk- _2RWLTCLE-0s- krQEbDRNCFg-";
+            btn.textContent = ( document.querySelectorAll(".rQvmBxj2Kvg-:empty").length ) ? "Subscribe to all" : "Unsubscribe to all";
+            btn.onclick = subFunc;
+            const btndiv = document.createElement("div");
+            btndiv.appendChild(btn);
+            const lsection = document.querySelector("._2u-CXYgdzlo-");
+            if ( document.querySelectorAll(".BfmIgp5hDLQ- > div > div > button").length ) {
+                if ( lsection ) lsection.insertAdjacentElement("afterbegin",btndiv);
+                else document.querySelector('.VsQBaHlz-3M-').insertAdjacentElement("beforeend",btndiv);
+                GM_unregisterMenuCommand(btnId);
+            }
+        }, { id: btnID, autoClose: false });
+        GM_registerMenuCommand(menuText, subFunc, { id: subID, autoClose: false });
     };
 })();
