@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         One-Click Subscribe to all steam workshop items
 // @namespace    https://github.com/joex92/One-Click-Subscribe-to-all-Steam-workshop-items
-// @version      4.6
+// @version      4.7
 // @description  Subscribe to all items shown.
 // @author       JoeX92
 // @match        https://steamcommunity.com/workshop/browse/*
@@ -15,6 +15,7 @@
     
     window.onload = ()=>{
         const btn = document.createElement("button");
+        let subMenu = null;
         const subID = "sub2all";
         let menuText = ( document.querySelectorAll(".rQvmBxj2Kvg-:empty").length ) ? "Subscribe to all" : "Unsubscribe to all";
         const subFunc = async (e)=>{
@@ -40,7 +41,7 @@
                 btn.textContent = menuText = "Subscribe to all";
                 btn.style.pointerEvents = '';
             }
-            GM_registerMenuCommand(menuText, subFunc, { id: subID, autoClose: false });
+            subMenu = GM_registerMenuCommand(menuText, subFunc, { id: subID, autoClose: false });
         };
         const btnID = 'btn2pge'
         GM_registerMenuCommand("Add Button to Page", (e)=>{
@@ -59,12 +60,13 @@
                 GM_unregisterMenuCommand(subID);
             }
         }, { id: btnID, autoClose: false });
-        GM_registerMenuCommand(menuText, subFunc, { id: subID, autoClose: false });
+        subMenu = GM_registerMenuCommand(menuText, subFunc, { id: subID, autoClose: false });
         const sort = document.querySelector(".Akhl4w9LmKk-");
         sort.onclick = (e)=>{
             const sortmenu = e.target.parentElement.parentElement.parentElement.childNodes[0].childNodes[0];
             if ( sortmenu ) sortmenu.onclick = (e)=>{
                 btn.textContent = menuText = ( document.querySelectorAll(".rQvmBxj2Kvg-:empty").length ) ? "Subscribe to all" : "Unsubscribe to all";
+                if ( subMenu ) GM_registerMenuCommand(menuText, subFunc, { id: subID, autoClose: false });
             };
         };
     };
