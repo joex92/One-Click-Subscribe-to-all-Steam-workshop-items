@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         One-Click Subscribe to all steam workshop items
 // @namespace    https://github.com/joex92/One-Click-Subscribe-to-all-Steam-workshop-items
-// @version      4.0
+// @version      4.2
 // @description  Subscribe to all items shown.
 // @author       JoeX92
 // @match        https://steamcommunity.com/workshop/browse/*
@@ -19,7 +19,9 @@
     //     btn.className = "Thio3V0imwc- _0DdgBbU2bPk- _2RWLTCLE-0s- krQEbDRNCFg-";
     //     btn.textContent = ( document.querySelectorAll(".rQvmBxj2Kvg-:empty").length ) ? "Subscribe to all" : "Unsubscribe to all";
     //     btn.onclick = async (e)=>{
-        GM_registerMenuCommand("Subscribe/Unsubscribe to all", async (e)=>{
+    const menuID = "sub2all";
+    menuText = ( document.querySelectorAll(".rQvmBxj2Kvg-:empty").length ) ? "Subscribe to all" : "Unsubscribe to all";
+    const subFunc = async (e)=>{
             console.log(e);
             const unsubscribeditems = document.querySelectorAll(".rQvmBxj2Kvg-:empty");
             if ( unsubscribeditems.length ) {
@@ -29,6 +31,7 @@
                     await i.parentElement.querySelector("button").click();
                     console.log(`${n.toString().padStart(2,0)}) Subscribed to item id: ${i.id.match(/(\d+)/)[0]}`);
                 });
+                menuText = "Unsubscribe to all";
                 // btn.textContent = "Unsubscribe to all";
                 // btn.style.pointerEvents = '';
             } else {
@@ -39,10 +42,13 @@
                     await i.parentElement.querySelector("button").click();
                     console.log(`${n.toString().padStart(2,0)}) Unsubscribed to item id: ${i.id.match(/(\d+)/)[0]}`);
                 });
+                menuText = "Subscribe to all";
                 // btn.textContent = "Subscribe to all";
                 // btn.style.pointerEvents = '';
             }
-        }, 'E');
+            GM_registerMenuCommand(menuText, subFunc, { id: menuID, autoClose: false });
+        }
+    GM_registerMenuCommand(menuText, subFunc, { id: menuID, autoClose: false });
     //  };
     //     const btndiv = document.createElement("div");
     //     btndiv.appendChild(btn);
