@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         One-Click Subscribe to all steam workshop items
 // @namespace    https://github.com/joex92/One-Click-Subscribe-to-all-Steam-workshop-items
-// @version      4.5.1
+// @version      4.6
 // @description  Subscribe to all items shown.
 // @author       JoeX92
 // @match        https://steamcommunity.com/workshop/browse/*
@@ -60,5 +60,12 @@
             }
         }, { id: btnID, autoClose: false });
         GM_registerMenuCommand(menuText, subFunc, { id: subID, autoClose: false });
+        const sort = document.querySelector(".Akhl4w9LmKk-");
+        sort.onclick = (e)=>{
+            const sortmenu = e.target.parentElement.parentElement.parentElement.childNodes[0].childNodes[0];
+            if ( sortmenu ) sortmenu.onclick = (e)=>{
+                btn.textContent = menuText = ( document.querySelectorAll(".rQvmBxj2Kvg-:empty").length ) ? "Subscribe to all" : "Unsubscribe to all";
+            };
+        };
     };
 })();
