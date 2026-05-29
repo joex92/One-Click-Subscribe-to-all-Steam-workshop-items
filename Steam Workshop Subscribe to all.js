@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         One-Click Subscribe to all steam workshop items
 // @namespace    https://github.com/joex92/One-Click-Subscribe-to-all-Steam-workshop-items
-// @version      3.0
+// @version      3.0.1
 // @description  Subscribe to all items shown.
 // @author       JoeX92
 // @match        https://steamcommunity.com/workshop/browse/*
@@ -43,7 +43,7 @@
         };
         const lsection = document.querySelector("._2u-CXYgdzlo-");
         if ( document.querySelectorAll(".BfmIgp5hDLQ- > div > div > button").length ) {
-            if ( lsection ) rsection.insertAdjacentElement("afterbegin",btn);
+            if ( lsection ) lsection.insertAdjacentElement("afterbegin",btn);
             else document.querySelector('.VsQBaHlz-3M-').insertAdjacentElement("beforeend",btn);
         }
     };
