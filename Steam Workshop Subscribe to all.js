@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         One-Click Subscribe to all steam workshop items
 // @namespace    https://github.com/joex92/One-Click-Subscribe-to-all-Steam-workshop-items
-// @version      4.5
+// @version      4.5.1
 // @description  Subscribe to all items shown.
 // @author       JoeX92
 // @match        https://steamcommunity.com/workshop/browse/*
@@ -25,7 +25,7 @@
                 btn.style.pointerEvents = 'none';
                 unsubscribeditems.forEach( async (i,n)=>{
                     await i.parentElement.querySelector("button").click();
-                    console.log(`${n.toString().padStart(2,0)}) Subscribed to item: ${i.parentElement.querySelector("._3rvey4VpXts- > a").textContent} ${i.parentElement.querySelector(".CmHGWYJjMk0-- > a").textContent}`);
+                    console.log(`${n.toString().padStart(2,0)}) Subscribed to item: ${i.parentElement.querySelector("._3rvey4VpXts- > a").textContent} ${i.parentElement.querySelector(".CmHGWYJjMk0- > a").textContent}`);
                 });
                 btn.textContent = menuText = "Unsubscribe to all";
                 btn.style.pointerEvents = '';
@@ -35,7 +35,7 @@
                 btn.style.pointerEvents = 'none';
                 subscribeditems.forEach( async (i,n)=>{
                     await i.parentElement.querySelector("button").click();
-                    console.log(`${n.toString().padStart(2,0)}) Unsubscribed to item: ${i.parentElement.querySelector("._3rvey4VpXts- > a").textContent} ${i.parentElement.querySelector(".CmHGWYJjMk0-- > a").textContent}`);
+                    console.log(`${n.toString().padStart(2,0)}) Unsubscribed to item: ${i.parentElement.querySelector("._3rvey4VpXts- > a").textContent} ${i.parentElement.querySelector(".CmHGWYJjMk0- > a").textContent}`);
                 });
                 btn.textContent = menuText = "Subscribe to all";
                 btn.style.pointerEvents = '';
